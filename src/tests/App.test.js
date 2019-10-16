@@ -14,6 +14,19 @@ import { spy } from 'sinon';
 configure({ adapter: new Adapter() });
 
 describe('Form Validation <App />', () => {
+  it('OWN TEST', () => {
+    let formSpy =(x)=> x;
+    const form = mount(<Form isFormValid = {formSpy} />);
+    form.find('.name').simulate('change', { target: { value: 'sadasdas' } });
+    form.find('.email').simulate('change', { target: { value: 'abc@xyz.com' } });
+    form.find('.phone').simulate('change', { target: { value: '9856756756' } });
+    form.find('.url').simulate('change', { target: { value: 'http://google.com' } });
+    form.find('.button').simulate('click');
+    expect(formSpy(true)).toEqual(true);
+  });
+
+
+
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
@@ -31,11 +44,12 @@ describe('Form Validation <App />', () => {
     expect(len).toEqual(4);
   });
 
+
   it('check entire form validation when the form is valid', () => {
     let formSpy = spy();
-    const form = mount(<Form isFormValid={formSpy} />);
-    form.find('.name').simulate('change', { target: { value: 'sasrank' } });
-    form.find('.email').simulate('change', { target: { value: 'aasdbc@xyz.com' } });
+    const form = mount(<Form isFormValid = {formSpy} />);
+    form.find('.name').simulate('change', { target: { value: 'sadasdas' } });
+    form.find('.email').simulate('change', { target: { value: 'abc@xyz.com' } });
     form.find('.phone').simulate('change', { target: { value: '9856756756' } });
     form.find('.url').simulate('change', { target: { value: 'http://google.com' } });
     form.find('.button').simulate('click');
